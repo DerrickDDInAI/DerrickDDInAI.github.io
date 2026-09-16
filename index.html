@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DD — Projects</title>
+<meta name="description" content="Projects by Derrick Van Frausum: games, movement apps, and computer-vision experiments.">
+<meta property="og:title" content="DD — Projects">
+<meta property="og:description" content="Games, movement apps, and computer-vision experiments by Derrick Van Frausum.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23111'/><text x='50' y='66' font-size='46' font-family='Arial' font-weight='700' fill='%23f2c14e' text-anchor='middle'>DD</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ee;
+    --surface: #ffffff;
+    --ink: #17150f;
+    --muted: #6b665c;
+    --line: #e3ddd2;
+    --accent: #c2410c;
+    --chip: #efe9df;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12110e;
+      --surface: #1b1a16;
+      --ink: #f1ece2;
+      --muted: #a39d90;
+      --line: #2c2a24;
+      --accent: #f2994a;
+      --chip: #25231e;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  header.hero { padding: 88px 0 56px; }
+  .eyebrow {
+    font: 500 12px/1 "JetBrains Mono", monospace;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+  }
+  h1 {
+    font-family: Fraunces, Georgia, serif; font-weight: 700;
+    font-size: clamp(40px, 7vw, 72px); line-height: 1.02; letter-spacing: -.02em;
+    margin: 14px 0 18px;
+  }
+  .lede { font-size: 19px; color: var(--muted); max-width: 620px; margin: 0; }
+  nav.jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  nav.jump a {
+    text-decoration: none; font-size: 14px; padding: 7px 14px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+  }
+  nav.jump a:hover { border-color: var(--accent); color: var(--accent); }
+
+  section.group { padding: 40px 0; border-top: 1px solid var(--line); }
+  .group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight: 500; font-size: 30px; margin: 6px 0 0; letter-spacing: -.01em; }
+  .group-note { color: var(--muted); font-size: 15px; max-width: 460px; margin: 0; }
+
+  .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1.15fr 1fr; }
+  .shot {
+    position: relative; aspect-ratio: 1200 / 630; background: var(--chip);
+    overflow: hidden; display: block;
+  }
+  .card.wide .shot { aspect-ratio: auto; min-height: 320px; }
+  .shot img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
+    transition: transform .5s ease;
+  }
+  .card:hover .shot img { transform: scale(1.03); }
+  .shot .fallback {
+    position: absolute; inset: 0; display: grid; place-items: center;
+  }
+  .body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  h3 { font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 24px; margin: 0; line-height: 1.15; }
+  .tagline { font-style: italic; color: var(--muted); margin: -6px 0 0; font-size: 15px; }
+  .body p { margin: 0; }
+  ul.points { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+  ul.points li { margin: 2px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font: 500 11px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em;
+    background: var(--chip); color: var(--muted); padding: 6px 8px; border-radius: 6px;
+  }
+  .tag.live { color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    font-weight: 600; font-size: 14px; padding: 9px 14px; border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn svg { width: 14px; height: 14px; }
+  .aside {
+    font-size: 13px; color: var(--muted); border-left: 2px solid var(--accent);
+    padding: 2px 0 2px 12px;
+  }
+  .experiments { display: flex; flex-wrap: wrap; gap: 6px; }
+  .experiments span { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 56px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 760px) {
+    header.hero { padding: 56px 0 40px; }
+    .card.wide { grid-template-columns: 1fr; }
+    .card.wide .shot { min-height: 0; aspect-ratio: 1200 / 630; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Derrick Van Frausum · AI Engineer</div>
+    <h1>Things I build<br>for fun, to learn,<br>and to share.</h1>
+    <p class="lede">Games, movement apps and computer-vision experiments. Most started as a question I wanted to answer by building something.</p>
+    <nav class="jump" aria-label="Sections">
+      <a href="#hackathon">Hackathon</a>
+      <a href="#games">Games</a>
+      <a href="#apps">Apps</a>
+      <a href="#learning">Teaching computer vision</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HACKATHON -->
+  <section class="group" id="hackathon">
+    <div class="wrap">
+      <div class="group-head">
+        <div>
+          <div class="eyebrow">Now building</div>
+          <h2>Hackathon, with my twin brothers</h2>
+        </div>
+        <p class="group-note">Two small products about showing up every day: one for moving your body, one for keeping habits with friends.</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <a class="shot" href="https://kinetwist.com/" target="_blank" rel="noopener"
+             data-shots="screenshots/kinetwist.png|https://kinetwist.com/og.jpg|https://s0.wp.com/mshots/v1/https%3A%2F%2Fkinetwist.com%2F?w=1200&h=630">
+            <img alt="Kinetwist website" loading="lazy">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag live">Live</span><span class="tag">Android</span><span class="tag">Offline-first</span><span class="tag">DIY hardware</span></div>
+            <h3>Kinetwist</h3>
+            <p class="tagline">Small moves. Real momentum.</p>
+            <p>A movement companion for people who sit a lot. It serves short movement snacks through the day. You confirm each one in the app or by turning an open-source DIY cube, and every confirmed move adds to a growing Pyramid.</p>
+            <ul class="points">
+              <li>Move, Breathe and Focus modes</li>
+              <li>No account needed, works fully offline</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://kinetwist.com/" target="_blank" rel="noopener">Visit site <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://summitpact.app/" target="_blank" rel="noopener"
+             data-shots="screenshots/summitpact.png|https://summitpact.app/gen/og.png|https://s0.wp.com/mshots/v1/https%3A%2F%2Fsummitpact.app%2F?w=1200&h=630">
+            <img alt="Summit Pact website" loading="lazy">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag live">Live</span><span class="tag">Social habits</span><span class="tag">Pixel art</span></div>
+            <h3>Summit Pact</h3>
+            <p class="tagline">One mountain. Your whole crew.</p>
+            <p>A habit tracker where up to 8 friends climb a shared pixel-art mountain. Each completed daily habit is one metre of elevation, and everyone sees everyone's progress.</p>
+            <ul class="points">
+              <li>Ropes stop one missed day from dragging the group down</li>
+              <li>Camps lock in progress, and each season brings a new mountain</li>
+              <li>Solo climb with an AI falcon companion</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://summitpact.app/" target="_blank" rel="noopener">Visit site <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section class="group" id="games">
+    <div class="wrap">
+      <div class="group-head">
+        <div>
+          <div class="eyebrow">Side project</div>
+          <h2>Games</h2>
+        </div>
+        <p class="group-note">An online multiplayer game I'm building for fun and to learn.</p>
+      </div>
+      <div class="grid">
+        <article class="card wide">
+          <a class="shot" href="https://footballinfinity.com/" target="_blank" rel="noopener"
+             data-shots="screenshots/footballinfinity.png|https://footballinfinity.com/og.jpg|https://s0.wp.com/mshots/v1/https%3A%2F%2Ffootballinfinity.com%2F?w=1200&h=630">
+            <img alt="Football Infinity game" loading="lazy">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag live">Playable</span><span class="tag">Multiplayer</span><span class="tag">Orbital physics</span><span class="tag">In progress</span></div>
+            <h3>Football Infinity</h3>
+            <p class="tagline">One goal. 60,000 km.</p>
+            <p>3v3 football in space. You fly between planets using orbital mechanics and gravity assists, and score in nets orbiting the other team's world.</p>
+            <ul class="points">
+              <li>Real-time orbital physics and thruster fuel to manage</li>
+              <li>Warp, orbit lock and nova flight modes</li>
+              <li>Blitz matches, AI opponents, and daily seeded sectors to compare scores</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://footballinfinity.com/" target="_blank" rel="noopener">Play now <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPS -->
+  <section class="group" id="apps">
+    <div class="wrap">
+      <div class="group-head">
+        <div>
+          <div class="eyebrow">Mobile</div>
+          <h2>Apps</h2>
+        </div>
+        <p class="group-note">Useful tools with honest limits, and your data stays on your phone.</p>
+      </div>
+      <div class="grid">
+        <article class="card wide">
+          <a class="shot" href="https://gitlab.com/derrick.vanfrausum/postura" target="_blank" rel="noopener"
+             data-shots="screenshots/postura.jpeg">
+            <img alt="Postura app" loading="lazy">
+            <div class="fallback" aria-hidden="true">
+              <svg viewBox="0 0 320 200" width="78%" style="max-width:380px">
+                <defs>
+                  <linearGradient id="pg" x1="0" x2="1"><stop offset="0" stop-color="#16a34a"/><stop offset=".55" stop-color="#eab308"/><stop offset="1" stop-color="#dc2626"/></linearGradient>
+                </defs>
+                <path d="M60 160 A100 100 0 0 1 260 160" fill="none" stroke="url(#pg)" stroke-width="14" stroke-linecap="round"/>
+                <line x1="160" y1="160" x2="222" y2="86" stroke="currentColor" stroke-width="5" stroke-linecap="round" style="color:var(--ink)"/>
+                <circle cx="160" cy="160" r="9" style="fill:var(--ink)"/>
+                <rect x="232" y="30" width="44" height="78" rx="9" transform="rotate(38 254 69)" fill="none" style="stroke:var(--ink)" stroke-width="4"/>
+                <text x="160" y="196" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" style="fill:var(--muted)">38° · confidence 0.92</text>
+              </svg>
+            </div>
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag">Flutter</span><span class="tag">Android + iOS</span><span class="tag">On-device</span><span class="tag">Open source</span></div>
+            <h3>Postura</h3>
+            <p class="tagline">A posture coach that doesn't use the camera.</p>
+            <p>Postura tracks how far your phone tilts from a healthy position you calibrate yourself. It gives a gentle haptic nudge, but only when the tilt lasts and the motion reading is reliable.</p>
+            <ul class="points">
+              <li>A confidence score pauses alerts while you walk or rotate the phone</li>
+              <li>Every alert comes with a "decision receipt" and one-tap feedback</li>
+              <li>All sensor data, decisions and logs stay on the device</li>
+            </ul>
+            <p class="aside">A habit cue you can see the reasoning behind. It is not a medical device.</p>
+            <div class="links">
+              <a class="btn primary" href="https://gitlab.com/derrick.vanfrausum/postura" target="_blank" rel="noopener">View on GitLab <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING -->
+  <section class="group" id="learning">
+    <div class="wrap">
+      <div class="group-head">
+        <div>
+          <div class="eyebrow">Teaching</div>
+          <h2>Computer vision, for beginners</h2>
+        </div>
+        <p class="group-note">Learn basic image and video techniques by playing with them.</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <a class="shot" href="https://artinahammock.com/" target="_blank" rel="noopener"
+             data-shots="screenshots/artinahammock.jpeg|https://s0.wp.com/mshots/v1/https%3A%2F%2Fartinahammock.com%2F?w=1200&h=630|https://opengraph.githubassets.com/1/DerrickDDInAI/art-in-a-hammock">
+            <img alt="Art in a Hammock website" loading="lazy">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag live">Live</span><span class="tag">Gallery</span><span class="tag">Colab</span></div>
+            <h3>Art in a Hammock</h3>
+            <p class="tagline">The experiments, as a website.</p>
+            <p>A gallery of the Coding Art experiments. Each card previews the result and opens the notebook in Google Colab, so you can run it in your browser without installing anything.</p>
+            <div class="links">
+              <a class="btn primary" href="https://artinahammock.com/" target="_blank" rel="noopener">Visit site <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+              <a class="btn" href="https://github.com/DerrickDDInAI/art-in-a-hammock" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="shot" href="https://github.com/DerrickDDInAI/coding-art" target="_blank" rel="noopener"
+             data-shots="screenshots/coding-art.png|https://opengraph.githubassets.com/1/DerrickDDInAI/coding-art">
+            <img alt="Coding Art repository" loading="lazy">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag">Python</span><span class="tag">Jupyter</span><span class="tag">OpenCV</span></div>
+            <h3>Coding Art</h3>
+            <p class="tagline">Images and video in, something else out.</p>
+            <p>Self-contained experiments that turn images or video into a mosaic, a morph, a fractal, a simulation or a 3D scene. Each one is a Jupyter notebook you step through, with reusable code under <code>core/utils</code>.</p>
+            <div class="experiments" aria-label="Some experiments">
+              <span>Mosaic</span><span>Morphing</span><span>Fractals</span><span>Voronoi</span><span>Game of Life</span><span>Pose estimation</span><span>Image to sound</span><span>Object detection</span><span>Blender 3D</span><span>+10 more</span>
+            </div>
+            <p class="aside">I came up with most of the ideas and wrote most of the code without AI. A Claude model helped clean up and restructure it.</p>
+            <div class="links">
+              <a class="btn primary" href="https://github.com/DerrickDDInAI/coding-art" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Derrick Van Frausum</span>
+    <span><a href="https://github.com/DerrickDDInAI">GitHub</a> · <a href="https://gitlab.com/derrick.vanfrausum">GitLab</a></span>
+  </div>
+</footer>
+
+<script>
+  // Load each screenshot from a list of sources, moving to the next one if an image fails.
+  // Put your own images in /screenshots to override the fallbacks.
+  document.querySelectorAll('[data-shots]').forEach(function (el) {
+    var img = el.querySelector('img');
+    var fb = el.querySelector('.fallback');
+    var srcs = el.getAttribute('data-shots').split('|');
+    var i = 0;
+    if (fb) img.style.visibility = 'hidden';
+    function next() {
+      if (i >= srcs.length) { img.remove(); return; }
+      img.src = srcs[i++];
+    }
+    img.addEventListener('error', next);
+    img.addEventListener('load', function () {
+      img.style.visibility = 'visible';
+      if (fb) fb.remove();
+    });
+    next();
+  });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

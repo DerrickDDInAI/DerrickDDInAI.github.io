@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DD — Projects</title>
-<meta name="description" content="Projects by Derrick Van Frausum: games, movement apps, and computer-vision experiments.">
+<meta name="description" content="Projects by Derrick Van Frausum: games, movement apps, AI films, and computer-vision experiments.">
 <meta property="og:title" content="DD — Projects">
-<meta property="og:description" content="Games, movement apps, and computer-vision experiments by Derrick Van Frausum.">
+<meta property="og:description" content="Games, movement apps, AI films, and computer-vision experiments by Derrick Van Frausum.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23111'/><text x='50' y='66' font-size='46' font-family='Arial' font-weight='700' fill='%23f2c14e' text-anchor='middle'>DD</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,6 +81,7 @@
     overflow: hidden; display: block;
   }
   .card.wide .shot { aspect-ratio: auto; min-height: 320px; }
+  .card.film .shot { aspect-ratio: 1920 / 1072; min-height: 0; align-self: center; }
   .shot img {
     width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
     transition: transform .5s ease;
@@ -125,6 +126,7 @@
     header.hero { padding: 56px 0 40px; }
     .card.wide { grid-template-columns: 1fr; }
     .card.wide .shot { min-height: 0; aspect-ratio: 1200 / 630; }
+    .card.film .shot { aspect-ratio: 1920 / 1072; }
     .grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -135,9 +137,10 @@
   <div class="wrap">
     <div class="eyebrow">Derrick Van Frausum · AI Engineer</div>
     <h1>Things I build<br>for fun, to learn,<br>and to share.</h1>
-    <p class="lede">Games, movement apps and computer-vision experiments. Most started as a question I wanted to answer by building something.</p>
+    <p class="lede">Games, movement apps, AI films and computer-vision experiments. Most started as a question I wanted to answer by building something.</p>
     <nav class="jump" aria-label="Sections">
       <a href="#hackathon">Hackathon</a>
+      <a href="#films">Films</a>
       <a href="#games">Games</a>
       <a href="#apps">Apps</a>
       <a href="#learning">Teaching computer vision</a>
@@ -200,6 +203,41 @@
           </div>
         </article>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- FILMS -->
+  <section class="group" id="films">
+    <div class="wrap">
+      <div class="group-head">
+        <div>
+          <div class="eyebrow">Creative projects</div>
+          <h2>Films</h2>
+        </div>
+        <p class="group-note">Learning cinematography by making stories with AI.</p>
+      </div>
+      <div class="grid">
+        <article class="card wide film">
+          <a class="shot" href="https://higgsfield.ai/@haracks/projects/the-fifth-wall" target="_blank" rel="noopener"
+             data-shots="screenshots/the-fifth-wall.jpeg">
+            <img src="screenshots/the-fifth-wall.jpeg" alt="The Fifth Wall poster: Nigel levitating in front of the film's title" width="1920" height="1072" loading="lazy">
+          </a>
+          <div class="body">
+            <div class="tags"><span class="tag live">Watch now</span><span class="tag">AI film</span><span class="tag">Docu-fiction</span><span class="tag">Higgsfield</span></div>
+            <h3>The Fifth Wall</h3>
+            <p class="tagline">The lives inside a man who stayed home.</p>
+            <p>Nigel, 58, gives up after three years of trying to levitate in his living room. This short docu-fiction explores what happens next, as he navigates through his impossible but probable various lives.</p>
+            <ul class="points">
+              <li>Made with my twin brother and my lady helping shape the edit</li>
+              <li>Created in Higgsfield Cinema Studio, from stills to video takes</li>
+              <li>The film and its production assets are shared in the project</li>
+            </ul>
+            <div class="links">
+              <a class="btn primary" href="https://higgsfield.ai/@haracks/projects/the-fifth-wall" target="_blank" rel="noopener">Watch on Higgsfield <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
